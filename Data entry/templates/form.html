@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Performance</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f2f2f2; }
+    h2 { color: #444; }
+    form {
+      background: white;
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label { display: block; margin-top: 1rem; }
+    input, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #5c6bc0;
+      color: white;
+      border: none;
+      margin-top: 2rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #3949ab;
+    }
+  </style>
+</head>
+<body>
+  <h2>Add Performance</h2>
+  <form method="POST" action="/submit">
+    <label for="venue">Venue:</label>
+    <input type="text" id="venue" name="venue" required>
+
+
+    <label for="event">Event Name:</label>
+    <input type="text" id="event" name="event" required>
+
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" name="genre" required>
+
+
+
+    <label for="date">Date (optional, format YYYY-MM-DD):</label>
+    <input type="text" id="date" name="date" placeholder="Leave blank to auto-increment">
+<input type="submit" value="Submit">
+    <button type="submit">Add Performance</button>
+  </form>
+{% if entries %}
+  <div class="entries">
+    <h2>Submitted Performances</h2>
+    {% for venue, performances in entries.items() %}
+      <h3>{{ venue }}</h3>
+      <ul>
+        {% for perf in performances %}
+          <li><strong>{{ perf.date }}</strong>: {{ perf.event }} ({{ perf.genre }})</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+  {% endif %}
+</body>
+</html>
+

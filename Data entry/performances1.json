@@ -1,0 +1,878 @@
+{
+  "Breslin Center": [],
+  "Harper's": [
+    {
+      "date": "1999-01-07",
+      "event": "23 Degrees North",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-08",
+      "event": "Soulstice",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "M-80s",
+      "genre": "Variety"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "Bittersweet Trio",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-21",
+      "event": "Soulstice",
+      "genre": "Variety"
+    },
+    {
+      "date": "1990-01-22",
+      "event": "Shakin' Not Stirred",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-23",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "The Bomb",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-30",
+      "event": "M-80s",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-28",
+      "event": "Keith Scott",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-05",
+      "event": "Tuxedo Junction",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-06",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "The Bomb",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "M-80s",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "Shakin' Not Stirred",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Acme Jam",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-20",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-25",
+      "event": "Soulstice",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-26",
+      "event": "Tuxedo Junction",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-27",
+      "event": "Missing Rigby",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Sea Cruisers",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Soulstice",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-03-06",
+      "event": "Shakin' Not Stirred",
+      "genre": "Variety"
+    }
+  ],
+  "Landshark": [
+    {
+      "date": "1999-01-08",
+      "event": "Satin Jones",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Contact Jack",
+      "genre": "Variety"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "Figurehead",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "Chunk O' Funk",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-22",
+      "event": "The Dopes",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-23",
+      "event": "Tongue & Groove",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-30",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-05",
+      "event": "Satin Jones",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Chunk O' Funk",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Insol",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Sugar Coated Sanity",
+      "genre": "Variety"
+    }
+  ],
+  "P.T. O'Malley's": [
+    {
+      "date": "1999-01-07",
+      "event": "Buddy Pops",
+      "genre": "Variety"
+    },
+    {
+      "date": "1990-01-14",
+      "event": "Contact Jack",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-21",
+      "event": "Haywoods",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-04",
+      "event": "Tongue & Groove",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Kung Fu Diesel",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-18",
+      "event": "Satin Jones",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Tongue in Groove",
+      "genre": "Variety"
+    }
+  ],
+  "Green Door": [
+    {
+      "date": "1999-01-07",
+      "event": "Matt Besey",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-08",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1990-01-14",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-21",
+      "event": "Daddy Fox",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-22",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-23",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-28",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-30",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-04",
+      "event": "Big Daddy Fox",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-05",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-06",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-18",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-20",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-25",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-26",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-27",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Uptown Band",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-03-06",
+      "event": "Root Doctor",
+      "genre": "Blues"
+    }
+  ],
+  "Moriarty's Pub": [
+    {
+      "date": "1999-01-08",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-22",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-30",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-01-30",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-05",
+      "event": "Smokehouse Trio",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-06",
+      "event": "Smokehouse Trio",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-20",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-26",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-02-27",
+      "event": "Smooth Daddy",
+      "genre": "Blues"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-03-06",
+      "event": "Baldori & Gardener",
+      "genre": "Variety"
+    }
+  ],
+  "Mac's Bar": [
+    {
+      "date": "1999-01-07",
+      "event": "Scotty Karate",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-07",
+      "event": "8 Ball Grifter",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-08",
+      "event": "Too Many Gods",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-08",
+      "event": "Elephant Ear",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Life on Earth",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Mirror Image",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "Workhorse",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "Powerface",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "Famous Ray",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "60-Second Crush",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "Plain",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-21",
+      "event": "Blackened Earth",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-22",
+      "event": "Set Ritual",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-23",
+      "event": "Calliope",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-23",
+      "event": "Walk on Water",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Thistle",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Deterants",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "Lurch",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-29",
+      "event": "B.S.E.D.C.",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-30",
+      "event": "St. Ashley",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Zypherean Weave",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Elevator Action",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Overtones",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Dive Spire",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Catzenjammers",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "Caustic Pop",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "Delores Haze",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-18",
+      "event": "Famous Ray",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-18",
+      "event": "Planet Melvin",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "8 Ball Grifter",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Migraines",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Sheila Divine",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Blood Sledge",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Electric Death",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Chickens",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-20",
+      "event": "Sovines",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Beaver Shoot",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Retire",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "The W-Vibe",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Bag of Hammers",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Cash Money",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Bi-Gon",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "G.T.O G.T.O",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-11",
+      "event": "Walk on Water",
+      "genre": "Variety"
+    }
+  ],
+  "Rick's American Cafe": [
+    {
+      "date": "1999-01-07",
+      "event": "Jerry Sprauge & Remainders",
+      "genre": "rock"
+    },
+    {
+      "date": "1999-01-08",
+      "event": "Daddy Long Legs",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-14",
+      "event": "Insol",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "Foster Kids",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "19 Wheels",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-21",
+      "event": "Knee Deep Shag",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-22",
+      "event": "Domestic Problems",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-28",
+      "event": "The Haywoods",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-06",
+      "event": "Larry McCray",
+      "genre": "Blues"
+    }
+  ],
+  "Small Planet (1)": [
+    {
+      "date": "1999-01-07",
+      "event": "Half Looking",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-08",
+      "event": "Rooster",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-09",
+      "event": "Dolores Haze",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-14",
+      "event": "Current",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-15",
+      "event": "The Lash",
+      "genre": "Rock"
+    },
+    {
+      "date": "1990-01-16",
+      "event": "James in Flames",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-22",
+      "event": "Steppin' in It",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-01-23",
+      "event": "Why Store",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Half Looking",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Electric Bugaloo",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Steppin' in It",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "James in Flames",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-13",
+      "event": "Daddy Long Legs",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-18",
+      "event": "Ekoostic Hookah",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "The Lash",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-19",
+      "event": "Chamberlain",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-20",
+      "event": "Knee Deep Shag",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-25",
+      "event": "James in Flames",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-26",
+      "event": "Howling Diablos",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-02-27",
+      "event": "Dolores Haze",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-04",
+      "event": "Troll for Trout",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Half Looking",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-05",
+      "event": "Lori Amey",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-06",
+      "event": "Powerface",
+      "genre": "Rock"
+    },
+    {
+      "date": "1999-03-06",
+      "event": "Front",
+      "genre": "Rock"
+    }
+  ],
+  "MSU Union": [
+    {
+      "date": "1999-01-29",
+      "event": "Jack Kohler",
+      "genre": "Variety"
+    }
+  ],
+  "Common Ground Coffee House": [
+    {
+      "date": "1999-02-12",
+      "event": "Lori Amey",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-12",
+      "event": "Scot Tower",
+      "genre": "Variety"
+    },
+    {
+      "date": "1999-02-11",
+      "event": "Figurehead",
+      "genre": "Rock"
+    }
+  ]
+}
