@@ -1,0 +1,265 @@
+<head>
+  <title>Leaflet Map with CSV & JSON</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- PapaParse for CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+        /* Map */
+    #map {
+      position: absolute;
+      top:0;
+      bottom:100px;
+      right:0;
+      left:0;
+      height: 60vh;
+      width: 100%;
+    }
+
+    /* Search Container */
+    #search-container {
+      padding: 1rem;
+      background: #f4f4f4;
+      border-top: 1px solid #ccc;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* Make sure it stays on top of the map */
+    }
+
+    /* Search Input */
+    #search-input {
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 400px;
+      font-size: 1rem;
+    }
+
+    /* Search Results */
+    #search-results {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    #search-results div {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    #search-results div:hover {
+      background-color: #f0f0f0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #eee;
+    }
+    .hidden {
+      display: none;
+    }
+
+    .leaflet-popup-content-wrapper {
+      background-color: #f7f7f7;
+      color: #333;
+      border-radius: 10px;
+      border: 2px solid #5c6bc0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .leaflet-popup-content {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .leaflet-popup-content h3 {
+      font-size: 18px;
+      color: #5c6bc0;
+      margin-bottom: 10px;
+    }
+
+    /* Scrollable Table */
+    .popup-table {
+      width: 100%;
+      max-height: 200px; /* Set the max height of the table */
+      overflow-y: auto; /* Allow scrolling if content exceeds the max height */
+      border-collapse: collapse;
+    }
+
+    .popup-table th, .popup-table td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    .popup-table th {
+      background-color: #5c6bc0;
+      color: white;
+    }
+
+    .popup-table td {
+      background-color: #f7f7f7;
+    }
+
+    .popup-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .popup-table tr:hover {
+      background-color: #ddd;
+    }
+
+    .leaflet-popup-close-button {
+      background-color: #5c6bc0;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Search locations...">
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const map = L.map("map").setView([42.736979, -84.483865], 13); // East Lansing
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: "&copy; OpenStreetMap, &copy; CARTO"
+      }).addTo(map);
+
+      const markers = [];
+      let venuesData = [];
+      let performancesData = [];
+      let genresData = [];
+
+      async function loadData() {
+        try {
+          const [venueCSV, performancesJSON] = await Promise.all([
+            fetch("venues.csv").then(res => res.text()),
+            fetch("performances.json").then(res => res.json())
+
+          ]);
+
+          venuesData = Papa.parse(venueCSV, {header: true, dynamicTyping: true}).data;
+          performancesData = performancesJSON;
+          genresData = performancesJSON
+
+          venuesData.forEach(venue => {
+            if (venue.Latitude && venue.Longitude && venue.Name) {
+              const venueName = venue.Name.trim();
+              const perfList = performancesData[venueName] || [];
+
+              const markerPopup = `
+                <div>
+                  <h3>${venueName}</h3>
+                  <table class="popup-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Event</th>
+                        <th>Genre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${perfList.map(p => `<tr><td>${p.date}</td><td>${p.event}</td><td>${p.genre}</td></tr>`).join("")}
+                    </tbody>
+                  </table>
+                </div>
+              `;
+
+              const marker = L.marker([venue.Latitude, venue.Longitude])
+                .addTo(map)
+                .bindPopup(markerPopup);
+
+              marker.venueName = venueName;
+              marker.performances = perfList;
+              markers.push(marker);
+            }
+          });
+
+          setupSearch(); // Set up search after data is loaded
+        } catch (err) {
+          console.error("Data load error:", err);
+        }
+      }
+
+      // Search functionality
+      function setupSearch() {
+        const searchInput = document.getElementById("search-input");
+
+        searchInput.addEventListener("input", function () {
+          const query = this.value.toLowerCase();
+
+          // Filter markers based on the search query
+          markers.forEach(marker => {
+            const matchesVenue = marker.venueName.toLowerCase().includes(query);
+
+            // Filter performances based on the search query
+            const filteredPerformances = marker.performances.filter(p =>
+              p.date.toLowerCase().includes(query) || p.event.toLowerCase().includes(query)
+            );
+
+            // If the venue matches, show the marker, else remove it
+            if (matchesVenue && filteredPerformances.length > 0) {
+              marker.addTo(map);
+
+              // Update the popup content to show only relevant performances
+              const markerPopup = `
+            <div>
+              <h3>${marker.venueName}</h3>
+              <table class="popup-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Event</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${filteredPerformances.map(p => `<tr><td>${p.date}</td><td>${p.event}</td><td>${p.genre}</td></tr>`).join("")}
+                </tbody>
+              </table>
+            </div>
+          `;
+
+              marker.setPopupContent(markerPopup); // Update the marker's popup content
+            } else {
+              marker.setOpacity(0); // Remove the marker if it doesn't match
+            }
+          });
+        });
+      }
+    })
+
+  </script>
+</body>
+</html>

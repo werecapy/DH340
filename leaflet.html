@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Map with CSV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!-- Load Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- Load jQuery and PapaParse -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+
+  <!-- Load GeoJSON data -->
+  <script src="./data/point.js"></script>
+  <script src="./data/line.js"></script>
+  <script src="./data/polygon.js"></script>
+
+  <!-- CSS for Map -->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+    .leaflet-popup-content-wrapper {
+      background-color: white;
+      color: crimson;
+      border: 1px solid red;
+      border-radius: 50px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+    // Initialize the map
+    var map = L.map('map', {
+      center: [41.57, -72.69], // EDIT latitude, longitude to re-center map
+      zoom: 9,  // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
+      scrollWheelZoom: false,
+      tap: false
+    });
+
+    // Base Layers
+    var light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
+    }).addTo(map);
+
+    var terrain = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+    });
+
+    var controlLayers = L.control.layers(null, null, {
+      position: "topright",
+      collapsed: false
+    }).addTo(map);
+
+    controlLayers.addBaseLayer(light, 'Carto Light basemap');
+    controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
+
+    // Fetch CSV file
+    fetch('Copy of Leaflet Maps with Google Sheets template v1.3.1 - LAT&LONG.csv')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(csvString => {
+        var data = Papa.parse(csvString, { header: true, dynamicTyping: true }).data;
+
+        for (var i in data) {
+          var row = data[i];
+
+          // Ensure latitude and longitude exist before adding marker
+          if (row.Latitude && row.Longitude) {
+            var marker = L.marker([row.Latitude, row.Longitude], { opacity: 1 })
+              .bindPopup(row.Title);
+            marker.addTo(map);
+          }
+        }
+      })
+      .catch(error => console.error('Error loading CSV:', error));
+
+    map.attributionControl.setPrefix(
+      'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
+    );
+
+    // GEOJSON Layers
+    var pointData = L.geoJSON(pointJson).addTo(map);
+    var lineData = L.geoJSON(lineJson).addTo(map);
+    var polygonData = L.geoJSON(polygonJson, {
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(`<b>Name: </b>` + feature.properties.name);
+      },
+      style: {
+        fillColor: 'red',
+        fillOpacity: 1,
+        color: '#c0c0c0',
+      }
+    }).addTo(map);
+    document.addEventListener("DOMContentLoaded", function () {
+    const map = L.map("map").setView([40.7128, -74.006], 12); // Default to NYC
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    async function loadVenues() {
+        const response = await fetch("venues.csv");
+        const data = await response.text();
+        const venues = parseCSV(data);
+        loadPerformances(venues);
+    }
+
+    async function loadPerformances(venues) {
+        const response = await fetch("performances.json");
+        const performances = await response.json();
+        addMarkers(venues, performances);
+    }
+
+    function parseCSV(csv) {
+        const rows = csv.split("\n").slice(1);
+        return rows.map(row => {
+            const [name, lat, lon] = row.split(",");
+            return { name, lat: parseFloat(lat), lon: parseFloat(lon) };
+        });
+    }
+
+    function addMarkers(venues, performances) {
+        venues.forEach(venue => {
+            const venuePerformances = performances[venue.name] || [];
+            const popupContent = `<b>${venue.name}</b><br>${venuePerformances.map(p => `${p.date}: ${p.event}`).join("<br>")}`;
+
+            L.marker([venue.lat, venue.lon]).addTo(map).bindPopup(popupContent);
+        });
+    }
+
+    loadVenues();
+});
+
+  </script>
+
+</body>
+</html>

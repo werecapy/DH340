@@ -245,3 +245,15 @@ textarea {
   }
 }
 
+
+/*slider!**!*/
+#slider-container {
+  padding: 1rem;
+  background: #e3e3e3;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+#date-range {
+  width: 60%;
+  margin: 0.5rem auto;
+}

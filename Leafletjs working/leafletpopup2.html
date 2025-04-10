@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Map with CSV & JSON</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- PapaParse for CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+    .leaflet-popup-content-wrapper {
+      background-color: white;
+      color: crimson;
+      border: 1px solid red;
+      border-radius: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const map = L.map("map").setView([41.57, -72.69], 9);
+
+      // Add base map layer
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: "&copy; OpenStreetMap, &copy; CARTO"
+      }).addTo(map);
+
+
+      // Load CSV and JSON
+      async function loadData() {
+        try {
+          const [venueCSV, performancesJSON] = await Promise.all([
+            fetch("venues.csv").then(res => res.text()),
+            fetch("perfomances.json").then(res => res.json())
+          ]);
+
+          const venues = Papa.parse(venueCSV, { header: true, dynamicTyping: true }).data;
+
+          venues.forEach(venue => {
+            if (venue.Latitude && venue.Longitude && venue.Name) {
+              const perfList = performancesJSON[venue.Name] || [];
+              const listItems = perfList.map(p => `<li>${p.date}: ${p.event}</li>`).join("");
+
+              const popupContent = `
+                <div>
+                  <h3>${venue.Name}</h3>
+                  <ul>${listItems}</ul>
+                </div>
+              `;
+
+              L.marker([venue.Latitude, venue.Longitude])
+                .addTo(map)
+                .bindPopup(popupContent);
+            }
+          });
+        } catch (error) {
+          console.error("Error loading data:", error);
+        }
+      }
+
+      loadData();
+    });
+
+
+
+  </script>
+</body>
+</html>
