@@ -1,0 +1,326 @@
+<head>
+  <title>Leaflet Map with CSV & JSON</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- PapaParse for CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+
+  <style>
+   body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#map {
+  height: 60vh;
+  width: 100%;
+}
+
+#slider-container {
+
+  padding: 1rem;
+  background: #f4f4f4;
+  border-top: 1px solid #ccc;
+}
+
+#range-label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#date-range {
+  width: 300px;
+  max-width: 90%;
+}
+
+#search-container {
+  padding: 1rem;
+  background: #f4f4f4;
+  border-top: 1px solid #ccc;
+}
+
+    /* Search Input */
+    #search-input {
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 400px;
+      font-size: 1rem;
+    }
+
+    /* Search Results */
+    #search-results {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    #search-results div {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    #search-results div:hover {
+      background-color: #f0f0f0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #eee;
+    }
+    .hidden {
+      display: none;
+    }
+
+    .leaflet-popup-content-wrapper {
+      background-color: #f7f7f7;
+      color: #333;
+      border-radius: 10px;
+      border: 2px solid #5c6bc0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .leaflet-popup-content {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .leaflet-popup-content h3 {
+      font-size: 18px;
+      color: #5c6bc0;
+      margin-bottom: 10px;
+    }
+
+    /* Scrollable Table */
+    .popup-table {
+      width: 100%;
+      max-height: 200px; /* Set the max height of the table */
+      overflow-y: auto; /* Allow scrolling if content exceeds the max height */
+      border-collapse: collapse;
+    }
+
+    .popup-table th, .popup-table td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    .popup-table th {
+      background-color: #5c6bc0;
+      color: white;
+    }
+
+    .popup-table td {
+      background-color: #f7f7f7;
+    }
+
+    .popup-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .popup-table tr:hover {
+      background-color: #ddd;
+    }
+
+    .leaflet-popup-close-button {
+      background-color: #5c6bc0;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      color: white;
+      font-size: 14px;
+    }
+padding: 1rem;
+  background: #f4f4f4;
+  border-top: 1px solid #ccc;
+
+#range-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#date-range {
+  width: 300px;
+}
+
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Search locations...">
+  </div>
+<div id="slider-container">
+  <label for="date-range">Time Travel:</label>
+  <input type="range" id="date-range" min="0" max="100" value="100" step="1">
+  <span id="range-label">All Dates</span>
+</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const map = L.map("map").setView([42.736979, -84.483865], 13); // East Lansing
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: "&copy; OpenStreetMap, &copy; CARTO"
+      }).addTo(map);
+
+      const markers = [];
+      let venuesData = [];
+      let performancesData = [];
+      let genresData = [];
+
+      async function loadData() {
+        try {
+          const [venueCSV, performancesJSON] = await Promise.all([
+            fetch("venues.csv").then(res => res.text()),
+            fetch("performances.json").then(res => res.json())
+
+          ]);
+
+          venuesData = Papa.parse(venueCSV, { header: true, dynamicTyping: true }).data;
+          performancesData = performancesJSON;
+          genresData=performancesJSON
+
+          venuesData.forEach(venue => {
+            if (venue.Latitude && venue.Longitude && venue.Name) {
+              const venueName = venue.Name.trim();
+              const perfList = performancesData[venueName] || [];
+
+              const markerPopup = `
+                <div>
+                  <h3>${venueName}</h3>
+                  <table class="popup-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Event</th>
+                        <th>Genre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${perfList.map(p => `<tr><td>${p.date}</td><td>${p.event}</td><td>${p.genre}</td></tr>`).join("")}
+                    </tbody>
+                  </table>
+                  <br>
+    <a href="/form2?venue=${encodeURIComponent(venueName)}" target="_blank">➕ Add Performance</a>
+                </div>
+              `;
+
+              const marker = L.marker([venue.Latitude, venue.Longitude])
+                .addTo(map)
+                .bindPopup(markerPopup);
+
+              marker.venueName = venueName;
+              marker.performances = perfList;
+              markers.push(marker);
+            }
+          });
+
+          setupSearch(); // Set up search after data is loaded
+        } catch (err) {
+          console.error("Data load error:", err);
+        }
+      }
+
+      // Search functionality
+      function setupSearch() {
+        const searchInput = document.getElementById("search-input");
+
+        searchInput.addEventListener("input", function () {
+          const query = this.value.toLowerCase();
+
+          // Filter markers based on the search query
+          markers.forEach(marker => {
+            const matchesVenue = marker.venueName.toLowerCase().includes(query);
+            const matchesPerformance = marker.performances.some(p => p.date.toLowerCase().includes(query) || p.event.toLowerCase().includes(query) ||
+            p.genre.toLowerCase().includes(query));
+            if (matchesVenue || matchesPerformance) {
+              marker.addTo(map); // Add to map if it matches the search
+            } else {
+              map.removeLayer(marker);// Remove from map if it doesn't match the search
+            }
+          });
+        });
+      }
+
+      loadData(); // Load data when the page is ready
+      setupSlider();
+      setupSearch();
+      function setupSlider(minDate, maxDate) {
+  const slider = document.getElementById("date-range");
+  const rangeLabel = document.getElementById("range-label");
+
+  function getAllUniqueDates() {
+  const dates = new Set();
+  venuesData.forEach(venue => {
+    const venueName = venue.Name.trim();
+    const performances = performancesData[venueName] || [];
+    performances.forEach(p => dates.add(p.date));
+  });
+
+  return Array.from(dates).sort((a, b) => new Date(a) - new Date(b));
+}
+
+  slider.addEventListener("input", function () {
+    const selectedDate = allDates[this.value];
+    rangeLabel.textContent = `Showing performances on or before ${selectedDate}`;
+
+    // Filter and update markers
+    markers.forEach(marker => {
+      const filteredPerformances = marker.performances.filter(p =>
+        new Date(p.date) <= new Date(selectedDate)
+      );
+
+      if (filteredPerformances.length > 0) {
+        const popupContent = `
+          <div>
+            <h3>${marker.venueName}</h3>
+            <table class="popup-table">
+              <thead>
+                <tr><th>Date</th><th>Event</th></tr>
+              </thead>
+              <tbody>
+                ${filteredPerformances.map(p => `<tr><td>${p.date}</td><td>${p.event}</td></tr>`).join("")}
+              </tbody>
+            </table>
+          </div>`;
+        marker.getPopup().setContent(popupContent);
+        marker.addTo(map);
+      } else {
+        map.removeLayer(marker);
+      }
+    });
+  });
+}
+
+    });
+  </script>
+</body>
+</html>
