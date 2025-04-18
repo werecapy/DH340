@@ -51,32 +51,38 @@
     /* Scrollable Table */
     .popup-table {
       width: 100%;
-      max-height: 200px; /* Set the max height of the table */
-      overflow-y: auto; /* Allow scrolling if content exceeds the max height */
+      max-height: 100px; /* Set the max height of the table */
+       /* Allow scrolling if content exceeds the max height */
       border-collapse: collapse;
+      overflow: scroll;
     }
 
     .popup-table th, .popup-table td {
       padding: 8px;
       text-align: left;
       border: 1px solid #ddd;
+
     }
 
     .popup-table th {
       background-color: #5c6bc0;
       color: white;
+
     }
 
     .popup-table td {
       background-color: #f7f7f7;
+
     }
 
     .popup-table tr:nth-child(even) {
       background-color: #f2f2f2;
+
     }
 
     .popup-table tr:hover {
       background-color: #ddd;
+
     }
 
     .leaflet-popup-close-button {
@@ -87,7 +93,11 @@
       color: white;
       font-size: 14px;
     }
-
+.scroll-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
     /* Search bar styling */
     #search-container input {
       width: 100%;
@@ -158,6 +168,7 @@
               const markerPopup = `
                 <div>
                   <h3>${venueName}</h3>
+                  <div class="scroll-wrapper">
                   <table class="popup-table">
                     <thead>
                       <tr>
@@ -169,14 +180,20 @@
                       ${perfList.map(p => `<tr><td>${p.date}</td><td>${p.event}</td></tr>`).join("")}
                     </tbody>
                   </table>
+                   </div>
                 </div>
               `;
 
-              const marker = L.marker([venue.Latitude, venue.Longitude])
-                .addTo(map)
-                .bindPopup(markerPopup);
 
-              markers.push(marker);
+              const marker = L.marker([venue.Latitude, venue.Longitude], {
+  title: venueName, // this lets you hover to see the name
+  riseOnHover: true, // brings marker to front when hovered
+  // icon: customIcon, // add this line if you define a custom icon
+})
+.bindPopup(markerPopup);
+
+markers.push(marker);
+marker.addTo(map);
             }
           });
         } catch (err) {
@@ -230,7 +247,9 @@
         <div>
           <h3>${venueName}</h3>
           <table class="popup-table">
+
             <thead>
+
               <tr>
                 <th>Date</th>
                 <th>Event</th>
