@@ -1,0 +1,7 @@
+3. Clear Cache Manually (if needed)
+
+In Chrome:
+
+    Open DevTools (Cmd + Option + I / F12)
+
+    Right-click the refresh button → “Empty Cache and Hard Reload”

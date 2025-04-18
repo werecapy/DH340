@@ -30,7 +30,7 @@
       background-color: #f7f7f7;
       color: #333;
       border-radius: 10px;
-      border: 2px solid #5c6bc0;
+      border: 2px solid #216c2e;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       padding: 20px;
       font-family: Arial, sans-serif;
@@ -44,7 +44,7 @@
 
     .leaflet-popup-content h3 {
       font-size: 18px;
-      color: #5c6bc0;
+      color: #245c3a;
       margin-bottom: 10px;
     }
 
@@ -65,7 +65,7 @@
     }
 
     .popup-table th {
-      background-color: #5c6bc0;
+      background-color: #205f17;
       color: white;
 
     }
@@ -86,7 +86,7 @@
     }
 
     .leaflet-popup-close-button {
-      background-color: #5c6bc0;
+      background-color: #216c2e;
       border-radius: 50%;
       width: 20px;
       height: 20px;
@@ -102,7 +102,7 @@
     #search-container input {
       width: 100%;
       padding: 10px;
-      border: 2px solid #5c6bc0;
+      border: 2px solid #245c3a;
       border-radius: 5px;
       font-size: 14px;
     }
@@ -152,7 +152,7 @@
         try {
           const [venueCSV, performancesJSON] = await Promise.all([
             fetch("venues.csv").then(res => res.text()),
-            fetch("performances.json").then(res => res.json())
+            fetch("performances.json?v=" + new Date().getTime()).then(res => res.json())
           ]);
 
           venuesData = Papa.parse(venueCSV, { header: true, dynamicTyping: true }).data;
