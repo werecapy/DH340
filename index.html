@@ -1,5 +1,5 @@
 <head>
-  <title>Leaflet Map with CSV & JSON</title>
+  <title>MSU DH340</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,56 +11,104 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
 
   <style>
-   body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-#map {
-  height: 61vh;
-  width: 100%;
-}
-
-#slider-container {
-
-  padding: 1rem;
-  background: #f4f4f4;
-  border-top: 1px solid #ccc;
-}
-
-#range-label {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-#date-range {
-  width: 300px;
-  max-width: 90%;
-}
-
-#search-container {
-  padding: 1rem;
-  background: #f4f4f4;
-  border-top: 1px solid #ccc;
-}
-
-    /* Search Input */
-    #search-input {
-      padding: 0.5rem;
-      width: 100%;
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:200px; right:0; left:0; }
+    #search-container {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      width: 80%;
       max-width: 400px;
-      font-size: 1rem;
     }
 
-    /* Search Results */
+    .leaflet-popup-content-wrapper {
+      background-color: #f7f7f7;
+      color: #333;
+      border-radius: 10px;
+      border: 2px solid #216c2e;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .leaflet-popup-content {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .leaflet-popup-content h3 {
+      font-size: 18px;
+      color: #245c3a;
+      margin-bottom: 10px;
+    }
+
+    /* Scrollable Table */
+    .popup-table {
+      width: 100%;
+      max-height: 100px; /* Set the max height of the table */
+       /* Allow scrolling if content exceeds the max height */
+      border-collapse: collapse;
+      overflow: scroll;
+    }
+
+    .popup-table th, .popup-table td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+
+    }
+
+    .popup-table th {
+      background-color: #205f17;
+      color: white;
+
+    }
+
+    .popup-table td {
+      background-color: #f7f7f7;
+
+    }
+
+    .popup-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+
+    }
+
+    .popup-table tr:hover {
+      background-color: #ddd;
+
+    }
+
+    .leaflet-popup-close-button {
+      background-color: #216c2e;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      color: white;
+      font-size: 14px;
+    }
+.scroll-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
+    /* Search bar styling */
+    #search-container input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #245c3a;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
     #search-results {
-      max-height: 200px;
+      max-height: 100px;
       overflow-y: auto;
       margin-top: 10px;
       background-color: #fff;
@@ -78,98 +126,6 @@
     #search-results div:hover {
       background-color: #f0f0f0;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0.5rem;
-    }
-    th, td {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-    }
-    th {
-      background: #eee;
-    }
-    .hidden {
-      display: none;
-    }
-
-    .leaflet-popup-content-wrapper {
-      background-color: #f7f7f7;
-      color: #333;
-      border-radius: 10px;
-      border: 2px solid #205f17;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      font-family: Arial, sans-serif;
-    }
-
-    .leaflet-popup-content {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .leaflet-popup-content h3 {
-      font-size: 18px;
-      color: #216c2e;
-      margin-bottom: 10px;
-    }
-
-    /* Scrollable Table */
-    .popup-table {
-      width: 100%;
-      max-height: 200px; /* Set the max height of the table */
-      overflow-y: auto; /* Allow scrolling if content exceeds the max height */
-      border-collapse: collapse;
-    }
-
-    .popup-table th, .popup-table td {
-      padding: 8px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
-
-    .popup-table th {
-      background-color: #245c3a;
-      color: white;
-    }
-
-    .popup-table td {
-      background-color: #f7f7f7;
-    }
-
-    .popup-table tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    .popup-table tr:hover {
-      background-color: #ddd;
-    }
-
-    .leaflet-popup-close-button {
-      background-color: #205f17;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      color: white;
-      font-size: 14px;
-    }
-padding: 1rem;
-  background: #f4f4f4;
-  border-top: 1px solid #ccc;
-
-#range-label {
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-#date-range {
-  width: 300px;
-}
-
   </style>
 </head>
 <body>
@@ -178,96 +134,142 @@ padding: 1rem;
 
   <div id="search-container">
     <input type="text" id="search-input" placeholder="Search locations...">
+    <div id="search-results"></div>
   </div>
-<div id="slider-container">
-  <label for="date-range">Time Travel:</label>
-  <input type="range" id="date-range" min="0" max="100" value="100" step="1">
-  <span id="range-label">All Dates</span>
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const map = L.map("map").setView([42.736979, -84.483865], 13); // East Lansing
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-      attribution: "&copy; OpenStreetMap, &copy; CARTO"
-    }).addTo(map);
 
-    const markers = [];
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const map = L.map("map").setView([42.736979, -84.483865], 13); // East Lansing
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        attribution: "&copy; OpenStreetMap, &copy; CARTO"
+      }).addTo(map);
 
-    async function loadData() {
-      try {
-        const [venueCSV, performancesJSON] = await Promise.all([
-          fetch("venues.csv").then(res => res.text()),
-          fetch("performances.json").then(res => res.json())
-        ]);
+      const markers = [];
+      let venuesData = [];
+      let performancesData = [];
 
-        const venues = Papa.parse(venueCSV, { header: true, dynamicTyping: true }).data;
-        const tableBody = document.getElementById("table-body");
+      async function loadData() {
+        try {
+          const [venueCSV, performancesJSON] = await Promise.all([
+            fetch("venues.csv").then(res => res.text()),
+            fetch("performances.json?v=" + new Date().getTime()).then(res => res.json())
+          ]);
 
-        venues.forEach(venue => {
-          if (venue.Latitude && venue.Longitude && venue.Name) {
-            const venueName = venue.Name.trim();
-            const perfList = performancesJSON[venueName] || [];
+          venuesData = Papa.parse(venueCSV, { header: true, dynamicTyping: true }).data;
+          performancesData = performancesJSON;
 
-            const markerPopup = `
-              <div>
-                <h3>${venueName}</h3>
-                <ul>${perfList.map(p => `<li>${p.date}: ${p.event}</li>`).join("")}</ul>
-              </div>
-            `;
+          const tableBody = document.getElementById("table-body");
 
-            const marker = L.marker([venue.Latitude, venue.Longitude])
-              .addTo(map)
-              .bindPopup(markerPopup);
+          venuesData.forEach(venue => {
+            if (venue.Latitude && venue.Longitude && venue.Name) {
+              const venueName = venue.Name.trim();
+              const perfList = performancesData[venueName] || [];
 
-            marker.venueName = venueName.toLowerCase();
-            marker.performances = perfList.map(p => `${p.date.toLowerCase()} ${p.event.toLowerCase()}`);
-            markers.push(marker);
+              const markerPopup = `
+                <div>
+                  <h3>${venueName}</h3>
+                  <div class="scroll-wrapper">
+                  <table class="popup-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Event</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${perfList.map(p => `<tr><td>${p.date}</td><td>${p.event}</td></tr>`).join("")}
+                    </tbody>
+                  </table>
+                   </div>
+                </div>
+              `;
 
-            // Add to table
-            perfList.forEach(p => {
-              const row = document.createElement("tr");
-              row.innerHTML = `<td>${venueName}</td><td>${p.date}</td><td>${p.event}</td>`;
-              row.dataset.text = `${venueName.toLowerCase()} ${p.date.toLowerCase()} ${p.event.toLowerCase()}`;
-              tableBody.appendChild(row);
-            });
-          }
-        });
 
-        setupSearch();
-      } catch (err) {
-        console.error("Data load error:", err);
+              const marker = L.marker([venue.Latitude, venue.Longitude], {
+  title: venueName, // this lets you hover to see the name
+  riseOnHover: true, // brings marker to front when hovered
+  // icon: customIcon, // add this line if you define a custom icon
+})
+.bindPopup(markerPopup);
+
+markers.push(marker);
+marker.addTo(map);
+            }
+          });
+        } catch (err) {
+          console.error("Data load error:", err);
+        }
       }
-    }
 
-    function setupSearch() {
-      const searchInput = document.getElementById("search");
-      const tableRows = document.querySelectorAll("#table-body tr");
+      loadData(); // Ensure this is correctly invoked outside of the try-catch block
 
-      searchInput.addEventListener("input", function () {
-        const query = this.value.toLowerCase();
+      // Implement search functionality
+      const searchInput = document.getElementById("search-input");
+      const searchResults = document.getElementById("search-results");
 
-        // Filter table
-        tableRows.forEach(row => {
-          const text = row.dataset.text || "";
-          row.classList.toggle("hidden", !text.includes(query));
-        });
+      searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+  searchResults.innerHTML = ""; // Clear previous results
 
-        // Filter markers
-        markers.forEach(marker => {
-          const matchVenue = marker.venueName.includes(query);
-          const matchEvent = marker.performances.some(p => p.includes(query));
-          if (matchVenue || matchEvent) {
-            marker.addTo(map);
-          } else {
-            map.removeLayer(marker);
-          }
-        });
+  markers.forEach(marker => map.removeLayer(marker)); // Hide all markers
+
+  venuesData.forEach((venue, index) => {
+    const venueName = venue.Name?.trim();
+    const venueLat = venue.Latitude;
+    const venueLng = venue.Longitude;
+    const fullPerfList = performancesData[venueName] || [];
+
+    // Filter performances to only include those that match the query
+    const filteredPerfs = fullPerfList.filter(perf =>
+      (perf.event && perf.event.toLowerCase().includes(query)) ||
+      (perf.genre && perf.genre.toLowerCase().includes(query)) ||
+      (perf.date && perf.date.toLowerCase().includes(query))
+    );
+
+    // If venue name or any performances match the query, show marker and build filtered popup
+    const venueMatches = venueName?.toLowerCase().includes(query);
+    const performanceMatches = filteredPerfs.length > 0;
+
+    if (venueMatches || performanceMatches) {
+      const resultDiv = document.createElement("div");
+      resultDiv.textContent = venueName;
+
+      resultDiv.addEventListener("click", () => {
+        const marker = markers[index];
+        map.setView(marker.getLatLng(), 15);
+        marker.openPopup();
       });
+
+      searchResults.appendChild(resultDiv);
+
+      // Build filtered popup content
+      const filteredPopup = `
+        <div>
+          <h3>${venueName}</h3>
+          <table class="popup-table">
+
+            <thead>
+
+              <tr>
+                <th>Date</th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${filteredPerfs.map(p => `<tr><td>${p.date}</td><td>${p.event}</td></tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      markers[index].setPopupContent(filteredPopup);
+      markers[index].addTo(map);
     }
-
-    loadData();
   });
-</script>
+});
 
+});
+  </script>
 </body>
 </html>
+
