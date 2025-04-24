@@ -309,6 +309,46 @@
   ],
   "Landshark Bar & Grill": [
     {
+      "date": "1995-01-05",
+      "event": "Gary Umlauf",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-06",
+      "event": "Chris Delgado",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-12",
+      "event": "Gary Umlauf",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-13",
+      "event": "Let's Beat Up Joe",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-18",
+      "event": "Chris Delgado",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-09",
+      "event": "Garry Umlauf",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-10",
+      "event": "Jason & the Groovenauts",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-15",
+      "event": "Chris Delgado",
+      "genre": "Rock"
+    },
+    {
       "date": "1999-01-08",
       "event": "Satin Jones",
       "genre": "Variety"
@@ -416,6 +456,26 @@
   ],
   "P.T. O'Malley's": [
     {
+      "date": "1995-01-11",
+      "event": "Tommy Foster",
+      "genre": "POPULAR"
+    },
+    {
+      "date": "1995-02-10",
+      "event": "Michael Scott Band",
+      "genre": "Popular"
+    },
+    {
+      "date": "1995-02-11",
+      "event": "Buzz Shop",
+      "genre": "Popular"
+    },
+    {
+      "date": "1995-02-15",
+      "event": "Tommy Foster",
+      "genre": "Popular"
+    },
+    {
       "date": "1999-01-07",
       "event": "Buddy Pops",
       "genre": "Variety"
@@ -501,7 +561,7 @@
       "genre": "Variety"
     }
   ],
-  "Green Door": [
+  "The Green Door": [
     {
       "date": "1999-01-07",
       "event": "Matt Besey",
@@ -835,6 +895,26 @@
   ],
   "Moriarty's Pub": [
     {
+      "date": "1995-01-06",
+      "event": "Kim Cramer",
+      "genre": "POPULAR"
+    },
+    {
+      "date": "1995-01-07",
+      "event": "Kim Cramer",
+      "genre": "POPULAR"
+    },
+    {
+      "date": "1994-02-10",
+      "event": "The Baldoris",
+      "genre": "Popular"
+    },
+    {
+      "date": "1995-02-12",
+      "event": "Kitty Donohoe",
+      "genre": "Popular"
+    },
+    {
       "date": "1999-01-08",
       "event": "Smooth Daddy",
       "genre": "Blues"
@@ -1041,6 +1121,16 @@
     }
   ],
   "Mac's Bar": [
+    {
+      "date": "1995-01-09",
+      "event": "Paul E.O.",
+      "genre": "Jazz"
+    },
+    {
+      "date": "1995-01-16",
+      "event": "Paul E.O.",
+      "genre": "Jazz"
+    },
     {
       "date": "1999-01-07",
       "event": "Scotty Karate",
@@ -1569,6 +1659,96 @@
   ],
   "Rick's American Cafe": [
     {
+      "date": "1995-01-05",
+      "event": "Heckyl & Jive",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-06",
+      "event": "The DTs",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-07",
+      "event": "Orange",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-08",
+      "event": "Windfall Megajam",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-09",
+      "event": "The Bucket",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-10",
+      "event": "Mother Lode",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-11",
+      "event": "Soulstice",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-12",
+      "event": "Jerry Sprague & the Remainders",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-13",
+      "event": "Daddy Long Legs",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-14",
+      "event": "Wheels",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-15",
+      "event": "Jason & Groovernauts",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-16",
+      "event": "Daphne Blue",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-17",
+      "event": "Spank",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-18",
+      "event": "The Vards",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-09",
+      "event": "Jerry Sprague & Remainders",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-10",
+      "event": "Suacy Jack",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-11",
+      "event": "Surrender Dorothy",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-12",
+      "event": "Windfall Megajam",
+      "genre": "Rock"
+    },
+    {
       "date": "1999-01-07",
       "event": "Jerry Sprauge & Remainders",
       "genre": "rock"
@@ -1735,6 +1915,91 @@
     }
   ],
   "Small Planet (1)": [
+     {
+      "date": "1995-01-12",
+      "event": "Verve Pipe",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-13",
+      "event": "Swishbelly",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-14",
+      "event": "Cuttin' Heads",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-15",
+      "event": "X-Jam Showcase",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-16",
+      "event": "Milo's Eye",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-17",
+      "event": "The Impatients",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-18",
+      "event": "Jason & Groovernauts",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-05",
+      "event": "Botfly",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-06",
+      "event": "Daddy Long Legs",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-07",
+      "event": "Black Market",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-09",
+      "event": "Big Blue Couch",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-01-10",
+      "event": "Daphne Blue",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-09",
+      "event": "Botfly",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-10",
+      "event": "Cuttin' Heads",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-11",
+      "event": "Swishbelly",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-13",
+      "event": "Chameleon's Dish",
+      "genre": "Rock"
+    },
+    {
+      "date": "1995-02-15",
+      "event": "Karmic",
+      "genre": "Rock"
+    },
     {
       "date": "1999-01-07",
       "event": "Half Looking",

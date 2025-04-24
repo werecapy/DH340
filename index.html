@@ -1,5 +1,5 @@
 <head>
-  <title>MSU DH340</title>
+  <title>Lansing Live</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -152,7 +152,7 @@
         try {
           const [venueCSV, performancesJSON] = await Promise.all([
             fetch("venues.csv").then(res => res.text()),
-            fetch("performances.json?v=" + new Date().getTime()).then(res => res.json())
+            fetch("performances1.json?v=" + new Date().getTime()).then(res => res.json())
           ]);
 
           venuesData = Papa.parse(venueCSV, { header: true, dynamicTyping: true }).data;
