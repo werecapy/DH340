@@ -174,10 +174,11 @@
                       <tr>
                         <th>Date</th>
                         <th>Event</th>
+                        <th>Genre</th>
                       </tr>
                     </thead>
                     <tbody>
-                      ${perfList.map(p => `<tr><td>${p.date}</td><td>${p.event}</td></tr>`).join("")}
+                      ${perfList.map(p => `<tr><td>${p.date}</td><td>${p.event}</td><td>${p.genre}</td></tr>`).join("")}
                     </tbody>
                   </table>
                    </div>
@@ -253,10 +254,11 @@ marker.addTo(map);
               <tr>
                 <th>Date</th>
                 <th>Event</th>
+                <th>Genre</th>
               </tr>
             </thead>
             <tbody>
-              ${filteredPerfs.map(p => `<tr><td>${p.date}</td><td>${p.event}</td></tr>`).join("")}
+              ${filteredPerfs.map(p => `<tr><td>${p.date}</td><td>${p.event}</td><td>${p.genre}</td></tr>`).join("")}
             </tbody>
           </table>
         </div>
